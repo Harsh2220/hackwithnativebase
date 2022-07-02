@@ -3,7 +3,9 @@ import FoodCard from "../components/FoodCard";
 import Login from "../components/Login";
 import Navbar from "../components/Navbar";
 import Restaurant from "../components/Restaurant";
+import { useStatevalue } from "../components/StateProvider";
 
 export default function App() {
-  return <Navbar />;
+  const [{ user }, dispatch] = useStatevalue("");
+  return <>{!user ? <Login /> : <Navbar />}</>;
 }

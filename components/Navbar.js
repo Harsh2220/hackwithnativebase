@@ -1,7 +1,10 @@
 import { Avatar, Heading, HStack } from "native-base";
 import React from "react";
+import { useStatevalue } from "./StateProvider";
 
 export default function Navbar() {
+  const [{ user }, dispatch] = useStatevalue("");
+
   return (
     <HStack
       h="16"
