@@ -1,4 +1,4 @@
-import { collection, doc, getDocs } from "firebase/firestore/lite";
+import { collection, getDocs } from "firebase/firestore/lite";
 import { Box, Heading, HStack } from "native-base";
 import React, { useEffect, useState } from "react";
 import db from "../FirebaseConfig";
@@ -10,8 +10,11 @@ export default function Restaurant() {
   const getData = async () => {
     const ResCol = collection(db, "owners");
     const ResSnapshot = await getDocs(ResCol);
-    const ResList = ResSnapshot.docs.map((doc) => doc.data());
+    const ResList = ResSnapshot.docs.map((doc) => {
+      return { id: doc.id, ...doc.data() };
+    });
     setRestaurantData(ResList);
+    console.log(ResList);
   };
 
   useEffect(() => {
@@ -25,6 +28,8 @@ export default function Restaurant() {
         {RestaurantData &&
           RestaurantData.map((el) => (
             <RestaurantCard
+              key={el.id}
+              id={el.id}
               address={el.Address}
               restaurantName={el.RestaurantName}
               url={el.Image}
