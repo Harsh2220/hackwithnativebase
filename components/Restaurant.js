@@ -13,7 +13,7 @@ import React from "react";
 export default function Restaurant() {
   return (
     <Box>
-      {/* <Heading p="10">Restaurant you want to order</Heading> */}
+      <Heading p="10">Restaurant you want to order</Heading>
       <HStack
         px="10"
         bg="gray.800"
